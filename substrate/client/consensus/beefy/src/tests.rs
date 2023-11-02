@@ -384,15 +384,14 @@ sp_api::mock_impl_runtime_apis! {
 			Ok(0)
 		}
 
-		fn generate_ancestry_proof(_prev_best_block: NumberFor<Block>) -> Result<AncestryProof<MmrRootHash>, MmrError> {
+		fn generate_ancestry_proof(
+			_prev_best_block: NumberFor<Block>,
+			_best_known_number: Option<NumberFor<Block>>,
+		) -> Result<AncestryProof<MmrRootHash>, MmrError> {
 			Ok(AncestryProof {
 				prev_peaks: vec![],
 				prev_size: 0,
-				proof: Proof {
-					leaf_indices: vec![],
-					leaf_count: 0,
-					items: vec![],
-				},
+				proof: Proof { leaf_indices: vec![], leaf_count: 0, items: vec![] },
 			})
 		}
 	}
