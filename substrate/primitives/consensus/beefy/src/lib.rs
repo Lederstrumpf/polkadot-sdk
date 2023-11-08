@@ -340,7 +340,7 @@ where
 /// Validates [ForkEquivocationProof] with the following checks:
 /// - if the commitment is to a block in our history, then at least a header or an ancestry proof is
 ///   provided:
-///   - a `correct_header` is correct if its at height `commitment.block_number` and
+///   - a `correct_header` is correct if it's at height `commitment.block_number` and
 ///   commitment.payload` != `expected_payload(correct_header)`
 ///   - an `ancestry_proof` is correct if it proves mmr_root(commitment.block_number) !=
 ///   mmr_root(commitment.payload)`
