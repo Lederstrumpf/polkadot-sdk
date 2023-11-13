@@ -50,26 +50,28 @@ pub fn verify_ancestry_proof<H, M>(
 where
 	// H: sp_runtime::traits::Hash::Output,
 	H: Clone + Debug + PartialEq + Encode,
-	M: mmr_lib::Merge<Item = H>,
+	M: mmr_lib_ancestry_proof::Merge<Item = H>,
 {
-	let p: mmr_lib::MerkleProof<H, _> = mmr_lib::MerkleProof::<H, M>::new(
-		mmr_size,
-		ancestry_proof
-			.proof
-			.items
-			.into_iter()
-			.map(|(index, hash)| (index, hash))
-			.collect(),
-	);
+	let p: mmr_lib_ancestry_proof::MerkleProof<H, _> =
+		mmr_lib_ancestry_proof::MerkleProof::<H, M>::new(
+			mmr_size,
+			ancestry_proof
+				.proof
+				.items
+				.into_iter()
+				.map(|(index, hash)| (index, hash))
+				.collect(),
+		);
 
-	let ancestry_proof = mmr_lib::AncestryProof::<H, _> {
+	let ancestry_proof = mmr_lib_ancestry_proof::AncestryProof::<H, _> {
 		prev_peaks: ancestry_proof.prev_peaks.into_iter().map(|hash| hash).collect(),
 		prev_size: ancestry_proof.prev_size,
 		proof: p,
 	};
 
-	let prev_root = mmr_lib::bagging_peaks_hashes::<H, M>(ancestry_proof.prev_peaks.clone())
-		.map_err(|e| Error::Verify.log_debug(e))?;
+	let prev_root =
+		mmr_lib_ancestry_proof::bagging_peaks_hashes::<H, M>(ancestry_proof.prev_peaks.clone())
+			.map_err(|e| Error::Verify.log_debug(e))?;
 	ancestry_proof
 		.verify_ancestor(root, prev_root)
 		.map_err(|e| Error::Verify.log_debug(e))
