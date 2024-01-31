@@ -78,7 +78,7 @@ pub trait Offence<Offender> {
 	/// The list of all offenders involved in this incident.
 	///
 	/// The list has no duplicates, so it is rather a set.
-	fn offenders(&self) -> Vec<Offender>;
+	fn offenders(&self) -> &[Offender];
 
 	/// The session index that is used for querying the validator set for the `slash_fraction`
 	/// function.

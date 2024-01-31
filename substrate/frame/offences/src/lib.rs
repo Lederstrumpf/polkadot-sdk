@@ -167,7 +167,7 @@ impl<T: Config> Pallet<T> {
 	fn triage_offence_report<O: Offence<T::IdentificationTuple>>(
 		reporters: Vec<T::AccountId>,
 		time_slot: &O::TimeSlot,
-		offenders: Vec<T::IdentificationTuple>,
+		offenders: &[T::IdentificationTuple],
 	) -> Option<TriageOutcome<T>> {
 		let mut storage = ReportIndexStorage::<T, O>::load(time_slot);
 

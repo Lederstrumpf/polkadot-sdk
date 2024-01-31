@@ -89,8 +89,8 @@ where
 	const ID: Kind = *b"beefy:equivocati";
 	type TimeSlot = TimeSlot<N>;
 
-	fn offenders(&self) -> Vec<Offender> {
-		self.offenders.clone()
+	fn offenders(&self) -> &[Offender] {
+		self.offenders.as_slice()
 	}
 
 	fn session_index(&self) -> SessionIndex {

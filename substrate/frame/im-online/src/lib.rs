@@ -835,8 +835,8 @@ impl<Offender: Clone> Offence<Offender> for UnresponsivenessOffence<Offender> {
 	const ID: Kind = *b"im-online:offlin";
 	type TimeSlot = SessionIndex;
 
-	fn offenders(&self) -> Vec<Offender> {
-		self.offenders.clone()
+	fn offenders(&self) -> &[Offender] {
+		self.offenders.as_slice()
 	}
 
 	fn session_index(&self) -> SessionIndex {
