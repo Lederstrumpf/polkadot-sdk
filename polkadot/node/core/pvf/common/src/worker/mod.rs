@@ -96,7 +96,6 @@ macro_rules! decl_worker_main {
 					std::process::exit(status)
 				},
 				"--check-can-enable-seccomp" => {
-					#[cfg(all(target_os = "linux", target_arch = "x86_64"))]
 					let status = if let Err(err) = security::seccomp::check_can_fully_enable() {
 						// Write the error to stderr, log it on the host-side.
 						eprintln!("{}", err);
@@ -104,7 +103,8 @@ macro_rules! decl_worker_main {
 					} else {
 						0
 					};
-					#[cfg(not(all(target_os = "linux", target_arch = "x86_64")))]
+					#[cfg(target_os = "linux")]
+					#[cfg(not(target_os = "linux"))]
 					let status = -1;
 					std::process::exit(status)
 				},

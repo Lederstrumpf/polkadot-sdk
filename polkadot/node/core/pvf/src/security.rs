@@ -239,7 +239,6 @@ async fn check_landlock(prepare_worker_program_path: &Path) -> SecureModeResult 
 /// to running the check in a worker, we try it... in a worker. The expected return status is 0 on
 /// success and -1 on failure.
 
-#[cfg(target_arch = "x86_64")]
 async fn check_seccomp(prepare_worker_program_path: &Path) -> SecureModeResult {
 	spawn_process_for_security_check(
 		prepare_worker_program_path,
@@ -248,13 +247,6 @@ async fn check_seccomp(prepare_worker_program_path: &Path) -> SecureModeResult {
 	)
 	.await
 	.map_err(|err| SecureModeError::CannotEnableSeccomp(err))
-}
-
-#[cfg(not(target_arch = "x86_64"))]
-async fn check_seccomp(_: &Path) -> SecureModeResult {
-	Err(SecureModeError::CannotEnableSeccomp(
-		"only supported on CPUs from the x86_64 family (usually Intel or AMD)".into(),
-	))
 }
 
 /// Check if we can call `clone` with all sandboxing flags, and return an error if not.

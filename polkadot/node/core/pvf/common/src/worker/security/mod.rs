@@ -33,7 +33,7 @@ pub mod change_root;
 pub mod clone;
 #[cfg(target_os = "linux")]
 pub mod landlock;
-#[cfg(all(target_os = "linux", target_arch = "x86_64"))]
+#[cfg(target_os = "linux")]
 pub mod seccomp;
 
 use crate::{worker::WorkerInfo, LOG_TARGET};

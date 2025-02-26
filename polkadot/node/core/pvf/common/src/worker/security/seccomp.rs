@@ -142,7 +142,10 @@ fn try_restrict() -> Result<()> {
 		SeccompAction::Allow,
 		// Match action: what to do if in rule list.
 		CAUGHT_ACTION,
+		#[cfg(target_arch = "x86_64")]
 		TargetArch::x86_64,
+		#[cfg(target_arch = "aarch64")]
+		TargetArch::aarch64,
 	)?;
 
 	let bpf_prog: BpfProgram = filter.try_into()?;
