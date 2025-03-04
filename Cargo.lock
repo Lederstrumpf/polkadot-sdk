@@ -2133,9 +2133,8 @@ dependencies = [
 
 [[package]]
 name = "blake2b_simd"
-version = "1.0.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23285ad32269793932e830392f2fe2f83e26488fd3ec778883a93c8323735780"
+version = "1.0.3"
+source = "git+https://github.com/Lederstrumpf/blake2_simd?branch=force-portable#e29c71b6dab044a686e87bbae43460c066d4464a"
 dependencies = [
  "arrayref",
  "arrayvec 0.7.6",
