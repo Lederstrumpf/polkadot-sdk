@@ -2095,7 +2095,18 @@ dependencies = [
 [[package]]
 name = "blake2b_simd"
 version = "1.0.3"
-source = "git+https://github.com/Lederstrumpf/blake2_simd?branch=force-portable#e29c71b6dab044a686e87bbae43460c066d4464a"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "06e903a20b159e944f91ec8499fe1e55651480c541ea0a584f5d967c49ad9d99"
+dependencies = [
+ "arrayref",
+ "arrayvec 0.7.6",
+ "constant_time_eq 0.3.0",
+]
+
+[[package]]
+name = "blake2b_simd"
+version = "1.0.4"
+source = "git+https://github.com/Lederstrumpf/blake2_simd?branch=force-portable#46641208471c5861ca72cd0b55bfdbcbe51bc6b3"
 dependencies = [
  "arrayref",
  "arrayvec 0.7.6",
@@ -23697,7 +23708,7 @@ dependencies = [
 name = "sp-crypto-hashing"
 version = "0.1.0"
 dependencies = [
- "blake2b_simd",
+ "blake2b_simd 1.0.4",
  "byteorder",
  "criterion",
  "digest 0.10.7",
@@ -23713,7 +23724,7 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "bc9927a7f81334ed5b8a98a4a978c81324d12bd9713ec76b5c68fd410174c5eb"
 dependencies = [
- "blake2b_simd",
+ "blake2b_simd 1.0.3",
  "byteorder",
  "digest 0.10.7",
  "sha2 0.10.9",
